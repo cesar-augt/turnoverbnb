@@ -24,12 +24,27 @@ const routes = [
     }
   },
   {
+    path: '/deposit',
+    name: 'deposit',
+    component: function () {
+      return import('../views/Customer/DepositCheck.vue')
+    }
+  },
+  {
+    path: '/check',
+    name: 'check',
+    component: function () {
+      return import('../views/Customer/AcceptedChecks.vue')
+    }
+  },
+  {
     path: '/purchase',
     name: 'purchase',
     component: function () {
       return import('../views/Customer/AddPurchase.vue')
     }
   }
+  
 ]
 
 const router = createRouter({
@@ -40,7 +55,6 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
   if (to.meta.requiresAuth && !token) {
-    // Se a rota requer autenticação e não há token, redirecione para a página de login
     next('/login');
   } else {
     next();
