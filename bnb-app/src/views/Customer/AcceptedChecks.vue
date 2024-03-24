@@ -20,7 +20,39 @@
     </v-card-text>
     <v-card-text>
       <v-form>
-        <Card v-for="(data, index) in check" :key="index" :card="data" />
+        <v-tabs
+          v-model="tab"
+          align-tabs="center"
+          stacked
+          color="primary"
+        >
+          <v-tab value="tab-1">
+            PENDING
+          </v-tab>
+          <v-tab value="tab-2">
+            ACCEPTED
+          </v-tab>
+          <v-tab value="tab-3">
+            REJECTED
+          </v-tab>
+        </v-tabs>
+        <v-window v-model="tab">
+          <v-window-item value="tab-1">
+            <v-card>
+              <v-card-text><Card v-for="(data, index) in check_pending" :key="index" :card="data" /></v-card-text>
+            </v-card>
+          </v-window-item>
+          <v-window-item value="tab-2">
+            <v-card>
+              <v-card-text><Card v-for="(data, index) in check_accepted" :key="index" :card="data" /></v-card-text>
+            </v-card>
+          </v-window-item>
+          <v-window-item value="tab-3">
+            <v-card>
+              <v-card-text><Card v-for="(data, index) in check_rejected" :key="index" :card="data" /></v-card-text>
+            </v-card>
+          </v-window-item>
+        </v-window>
       </v-form>
     </v-card-text>
   </v-card>
@@ -35,7 +67,10 @@ export default {
   },
   data() {
     return {
-      check: null,
+      tab: 'tab-2',
+      check_pending: null,
+      check_accepted: null,
+      check_rejected: null,
       selectedDate:''
     }
   },
@@ -47,8 +82,10 @@ export default {
       try {
         const date = this.selectedDate.split('-')
         if(date[0] >= 2020 && date[0] <= 2100){
-          const response = await axios.get('http://127.0.0.1:8000/api/purchases/' + date[1] + '/' + date[0])
-          this.check = response.data
+          const response = await axios.get('http://127.0.0.1:8000/api/deposits/' + date[1] + '/' + date[0])
+          this.check_pending = response.data.pending
+          this.check_accepted = response.data.accepted ?? [];
+          this.check_rejected = response.data.rejected ?? [];
         }
       } catch (error) {
         console.error(error)

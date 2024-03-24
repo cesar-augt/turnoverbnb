@@ -23,18 +23,20 @@
   export default {
     data() {
       return {
-        username: '',
+        email: '', 
         password: '',
       };
     },
     methods: {
       async login() {
         try {
-          const response = await axios.post('/login', { email: this.username, password: this.password });
-          const token = response.data.token;
-          localStorage.setItem('token', token);
-          // Redirecione para a página protegida após o login
-          this.$router.push('/protected-route');
+          await axios.post('/login', { email: this.email, password: this.password }).then(response => {
+              localStorage.setItem('token', response.data.access_token)
+            })
+            .catch(error => {
+              console.error('Erro ao fazer a requisição:', error);
+            });
+          this.$router.push('/home');
         } catch (error) {
           console.error('Error logging in:', error);
         }

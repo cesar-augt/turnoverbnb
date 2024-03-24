@@ -43,8 +43,21 @@ const routes = [
     component: function () {
       return import('../views/Customer/AddPurchase.vue')
     }
+  },
+  {
+    path: '/check/control',
+    name: 'control',
+    component: function () {
+      return import('../views/Admin/CheckList.vue')
+    }
+  },
+  {
+    path: '/check/details',
+    name: 'details',
+    component: function () {
+      return import('../views/Admin/CheckDetails.vue')
+    }
   }
-  
 ]
 
 const router = createRouter({

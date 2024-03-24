@@ -32,6 +32,7 @@
       async submit() {
         try {
           await axios.post('/deposit', { amount: this.amount, description: this.description});
+          this.$router.push('/home');
         } catch (error) {
           console.error('Error logging in:', error);
         }
