@@ -16,7 +16,6 @@
             prepend-icon="mdi-camera"
             @change="handleImageUpload"
           ></v-file-input>
-
         </div>
         <v-btn color="blue-lighten-3" dark block type="submit">ADD DEPOSIT</v-btn>
       </v-form>
@@ -42,7 +41,6 @@
     methods: {
       async submit() {
         try {
-          await axios.post('/deposit', { amount: this.amount, description: this.description});
           this.uploadImage()
           this.$router.push('/home');
         } catch (error) {
@@ -51,25 +49,16 @@
       },
       handleImageUpload(event) {
         this.selectedFile = event.target.files[0];
-        // const file = files[0];
-        // if (!file) return;
-
-        // const reader = new FileReader();
-        // reader.readAsDataURL(file);
-
-        // reader.onload = () => {
-        //   this.imageUrl = reader.result;
-        //   this.selectedImage = file;
-        // };
       },
       async uploadImage() {
         if (!this.selectedFile) {
           alert('Por favor, selecione um arquivo.');
           return;
         }
-        console.log(this.selectedFile);
         const formData = new FormData();
         formData.append('foto', this.selectedFile, this.selectedFile.name);
+        formData.append('amount', this.amount.replace("$", ""));
+        formData.append('description', this.description);
        
         try {
 

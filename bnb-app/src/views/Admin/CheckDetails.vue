@@ -1,7 +1,4 @@
 <template>
-  <br>
-  <br>
-  <br>
   <v-card class="elevation-12">
     <v-toolbar color="blue-lighten-3" dark flat>
       <v-toolbar-title>CHECK DETAILS</v-toolbar-title>
@@ -10,16 +7,16 @@
       <v-form  @submit.prevent="submit">
         <v-container>
           <v-row>
-            <v-text-field  v-model="amount" label="Amount" readonly outlined required></v-text-field>
-          </v-row>
-          <v-row>
             <v-text-field  v-model="description" label="Descrition" readonly outlined required></v-text-field>
           </v-row>
           <v-row>
-            <v-text-field  type="date" label="Descrition" readonly outlined required></v-text-field>
+            <v-text-field  v-model="amount" label="Amount" v-mask="'$###.###,##'" readonly outlined required></v-text-field>
           </v-row>
           <v-row>
-            <v-img src="http://127.0.0.1:8000/storage/fotos/1711328380.jpg"></v-img>
+            <v-text-field  type="date" readonly outlined required></v-text-field>
+          </v-row>
+          <v-row>
+            <v-img :src="url_image" width="400" height="200"></v-img>
           </v-row>
           <v-row>
             <v-col>
@@ -44,16 +41,20 @@ export default {
       id: '',
       amount: 0,
       description: '',
+      url_image:''
     }
   },
   mounted() {
     this.getData()
+    this.url_image = import.meta.env.VITE_API_URL + "/" + this.name_image
+    console.log(this.url_image)
   },
   methods: {
     getData() {
       this.id = this.$store.state.deposit.id
       this.amount = this.$store.state.deposit.amount
       this.description = this.$store.state.deposit.description
+      this.name_image = this.$store.state.deposit.name_image
     },
     async submit(){
       try {

@@ -1,6 +1,4 @@
 <template>
-  <br>
-  <br>
   <v-card class="elevation-12">
     <v-toolbar color="blue-lighten-3" dark flat>
       <v-toolbar-title>CHECK CONTROL</v-toolbar-title>
@@ -40,7 +38,7 @@ export default {
     },
     openDetails(data) {
       try {
-        this.$store.commit('setDeposit', { id: data.id, amount: data.amount, description: data.description })
+        this.$store.commit('setDeposit', { id: data.id, amount: data.amount, description: data.description, name_image: data.name_image })
         this.$router.push('/check/details')
       } catch (error) {
         console.error(error)
