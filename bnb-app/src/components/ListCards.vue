@@ -1,6 +1,6 @@
 <template>
+  <v-card elevation="2"  class="elevate">
   <v-container fluid>
-    <v-card elevation="2"  class="elevate">
         <v-row>
           <!-- Lado esquerdo: nome e descrição -->
           <v-col cols="6" class="text-left">
@@ -14,11 +14,11 @@
 
           <!-- Lado direito: valor -->
           <v-col cols="6" class="text-right">
-            <div class="font-weight-bold">{{ card.amount }}</div>
+            <div class="font-weight-bold" >{{ card.amount }}</div>
           </v-col>
         </v-row>
-      </v-card>
-    </v-container>
+      </v-container>
+    </v-card>
 </template>
   
   <script>

@@ -1,6 +1,6 @@
 <template>
   <v-card >
-    <v-toolbar color="primary" extended  dark flat>
+    <v-toolbar color="blue-lighten-3" extended  dark flat>
       <v-container>
         <v-row>
           <v-col>
@@ -9,7 +9,7 @@
         </v-row>
           <v-row>
             <v-col>
-              <v-text-field v-model="total" type="text" label="Current Balance" readonly outlined ></v-text-field>
+              <v-text-field v-model="total" type="text" label="Current Balance"  v-mask="'$###.###,##'"  readonly outlined ></v-text-field>
             </v-col>
             <v-col>
                 <v-text-field v-model="selectedDate" type="month" outlined required @change="getData"></v-text-field>
@@ -22,7 +22,7 @@
         <v-container>
           <v-row>
               <v-col>
-                <v-text-field v-model="total_purchases" type="text" label="Incomes" readonly outlined ></v-text-field>
+                <v-text-field v-model="total_purchases" type="text" label="Incomes" readonly outlined  v-mask="'$###.###,##'"></v-text-field>
               </v-col>
               <v-col>
                 <v-card @click="openDeposit">
@@ -37,7 +37,7 @@
           </v-row>
           <v-row>
               <v-col>
-                <v-text-field v-model="total_deposits" type="text" label="Expenses" readonly outlined ></v-text-field>
+                <v-text-field v-model="total_deposits" type="text" label="Expenses" v-mask="'$###.###,##'" readonly outlined ></v-text-field>
               </v-col>
               <v-col>
                 <v-card @click="openPurchase">
@@ -75,7 +75,7 @@ export default {
       total: 0,
       total_purchases: 0,
       total_deposits: 0,
-      selectedDate : '',
+      selectedDate : '2024-03',
       balance: null,
     }
   },

@@ -21,8 +21,11 @@ export default createVuetify({
   })
 
 import router from './router'
+import store from './store'
+import VueTheMask from 'vue-the-mask'
 
-const app = createApp(App).use(router)
+
+const app = createApp(App).use(store).use(router).use(VueTheMask)
 
 
 registerPlugins(app)

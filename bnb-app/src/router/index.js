@@ -2,6 +2,13 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
   {
+    path: '/user/create',
+    name: 'user',
+    component: function () {
+      return import('../views/Auth/UserCreate.vue')
+    }
+  },
+  {
     path: '/login',
     name: 'login',
     component: function () {

@@ -1,17 +1,14 @@
 <template>
-  <br>
-  <br>
-  <br>
   <v-card class="elevation-12">
-    <v-toolbar color="primary" dark flat>
+    <v-toolbar color="blue-lighten-3" dark flat>
       <v-toolbar-title>PURCHASE</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
       <v-form @submit.prevent="submit">
-        <v-text-field v-model="amount" label="Amount" outlined required></v-text-field>
-        <v-text-field v-model="description" label="Descrition" outlined required></v-text-field>
+        <v-text-field v-model="description" label="Descrition" outlined required ></v-text-field>
+        <v-text-field v-model="amount" label="Amount" outlined required v-mask="'$###.###,##'"></v-text-field>
         <v-text-field v-model="date" type="date" label="Descrition" outlined required></v-text-field>
-        <v-btn color="primary" dark block type="submit">ADD PURCHASE</v-btn>
+        <v-btn color="blue-lighten-3" dark block type="submit">ADD PURCHASE</v-btn>
       </v-form>
     </v-card-text>
   </v-card>

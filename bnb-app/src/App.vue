@@ -1,6 +1,6 @@
 <template>
     <v-app >
-          <v-navigation-drawer color="primary" dark flat v-model="drawer" app>
+          <v-navigation-drawer color="blue-lighten-3" dark flat v-model="drawer" app>
             <v-list>
               <v-list-item link to="/home">
                 <v-list-item-content>
@@ -44,9 +44,11 @@
               </v-list-item>
             </v-list>
           </v-navigation-drawer>
-          <v-app-bar  color="primary" dark flat app>
+          <v-app-bar  color="blue-lighten-3" dark flat app>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-app-bar-nav-icon @click="toggleTheme"></v-app-bar-nav-icon>
+            <v-btn icon @click="toggleTheme">
+              <v-icon>{{ isDarkTheme ? 'mdi-white-balance-sunny' : 'mdi-moon-waning-crescent' }}</v-icon>
+            </v-btn>
           </v-app-bar>
         <v-main>
           <router-view/>
@@ -61,11 +63,13 @@ export default {
       return {
         theme: useTheme(), 
         drawer: true,
+        isDarkTheme: true
       };
     },
     methods: {
       toggleTheme() {
         this.theme.global.name = this.theme.global.current.dark ? 'light' : 'dark'
+        this.isDarkTheme = !this.isDarkTheme
       },
     },
   }

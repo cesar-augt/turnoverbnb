@@ -2,7 +2,7 @@
   <br>
   <br>
   <v-card class="elevation-12">
-    <v-toolbar color="primary" dark flat>
+    <v-toolbar color="blue-lighten-3" dark flat>
       <v-toolbar-title>CHECK CONTROL</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
@@ -15,7 +15,6 @@
 <script>
 import Card from '../../components/ListCards';
 import axios from '../../service/auth';
-import store from '../../store';
 
 export default {
   components: {
@@ -24,8 +23,7 @@ export default {
   data() {
     return {
       tab: 'tab-2',
-      check: null,
-      selectedDate:''
+      check: null
     }
   },
   mounted() {
@@ -42,9 +40,8 @@ export default {
     },
     openDetails(data) {
       try {
-        //console.log(this.$store.state.amount)
-        //this.$router.push('/check/details')
-        this.check = response.data
+        this.$store.commit('setDeposit', { id: data.id, amount: data.amount, description: data.description })
+        this.$router.push('/check/details')
       } catch (error) {
         console.error(error)
       }

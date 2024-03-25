@@ -12,12 +12,15 @@
     "roboto-fontface": "*",
     "vue": "^3.3.0",
     "vue-router": "^4.3.0",
+    "vue-text-mask": "^6.1.2",
+    "vue-the-mask": "^0.11.1",
     "vuetify": "^3.0.0",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "^5.0.8",
     "sass": "^1.71.1",
     "unplugin-fonts": "^1.1.1",
