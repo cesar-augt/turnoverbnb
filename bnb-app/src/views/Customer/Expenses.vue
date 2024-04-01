@@ -34,19 +34,28 @@ export default {
   data() {
     return {
       expenses: null,
-      selectedDate : '2024-03'
+      selectedDate : ''
     }
   },
   mounted() {
+    this.getYearAndMonth()
     this.getData()
   },
   methods: {
+    getYearAndMonth(){
+      const date = new Date()
+      this.selectedDate =  date.getFullYear()
+      this.selectedDate += "-" + (date.getMonth() + 1).toString().padStart(2, "0")
+    },
     async getData() {
       try {
         const date = this.selectedDate.split('-')
         if(date[0] >= 2020 && date[0] <= 2100){
-          const response = await axios.get('http://127.0.0.1:8000/api/purchases/' + date[1] + '/' + date[0])
+          const response = await axios.get('/purchases/' + date[1] + '/' + date[0])
           this.expenses = response.data.purchases
+          this.expenses.forEach((item) => {
+            item.type = "purchases";
+          });
         }
       } catch (error) {
         console.error(error)
