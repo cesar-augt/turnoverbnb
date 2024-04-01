@@ -5,6 +5,9 @@
     </v-toolbar>
     <v-card-text>
       <v-form>
+        <div v-if="error">
+          <p>{{ error }}</p>
+        </div>
         <Card v-for="(data, index) in check" :key="index" :card="data" @click="openDetails(data)" />
       </v-form>
     </v-card-text>
@@ -21,7 +24,8 @@ export default {
   data() {
     return {
       tab: 'tab-2',
-      check: null
+      check: null,
+      error: null,
     }
   },
   mounted() {
@@ -30,15 +34,15 @@ export default {
   methods: {
     async getData() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/control')
+        const response = await axios.get('/control')
         this.check = response.data
       } catch (error) {
-        console.error(error)
+        this.error = error.response.data.message;
       }
     },
     openDetails(data) {
       try {
-        this.$store.commit('setDeposit', { id: data.id, amount: data.amount, description: data.description, name_image: data.name_image })
+        this.$store.commit('setDeposit', { id: data.id, amount: data.amount, name: data.user.name, url_image: data.url_image ,  email: data.user.email, account: data.user.id })
         this.$router.push('/check/details')
       } catch (error) {
         console.error(error)
