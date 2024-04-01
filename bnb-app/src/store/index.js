@@ -5,8 +5,13 @@ export default createStore({
     deposit:{
         id: '',
         amount: 0,
-        description: '',
-        name_image: ''
+        email: '',
+        name_image: '',
+        name: '',
+        account: ''
+    },
+    balance:{
+      current: 0
     }
   },
   getters: {
@@ -15,8 +20,13 @@ export default createStore({
     setDeposit(state, data) {
       state.deposit.id = data.id;
       state.deposit.amount = data.amount;
-      state.deposit.description = data.description;
-      state.deposit.name_image =  data.name_image;
+      state.deposit.email = data.email;
+      state.deposit.url_image =  data.url_image;
+      state.deposit.name = data.name;
+      state.deposit.account = data.account;
+    },
+    setBalance(state, data){
+      state.balance.current = data.current
     }
   },
   actions: {
