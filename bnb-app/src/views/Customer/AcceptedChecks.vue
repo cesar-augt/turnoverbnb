@@ -69,21 +69,31 @@ export default {
       check_pending: null,
       check_approved: null,
       check_rejected: null,
-      selectedDate : '2024-03'
+      selectedDate : ''
     }
   },
   mounted() {
+    this.getYearAndMonth()
     this.getData()
   },
   methods: {
+    getYearAndMonth(){
+      const date = new Date()
+      this.selectedDate =  date.getFullYear()
+      this.selectedDate += "-" + (date.getMonth() + 1).toString().padStart(2, "0")
+    },
     async getData() {
       try {
         const date = this.selectedDate.split('-')
         if(date[0] >= 2020 && date[0] <= 2100){
-          const response = await axios.get('http://127.0.0.1:8000/api/deposits/' + date[1] + '/' + date[0])
-          this.check_pending = response.data.pending
+          const response = await axios.get('/deposits/' + date[1] + '/' + date[0])
+          this.check_pending = response.data.pending ?? []
           this.check_approved = response.data.approved ?? [];
           this.check_rejected = response.data.rejected ?? [];
+
+          this.check_pending.forEach((item) => { item.type = "deposit" });
+          this.check_approved.forEach((item) => { item.type = "deposit" });
+          this.check_rejected.forEach((item) => { item.type = "deposit" });
         }
       } catch (error) {
         console.error(error)
