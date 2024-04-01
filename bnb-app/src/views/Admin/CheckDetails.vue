@@ -7,16 +7,19 @@
       <v-form  @submit.prevent="submit">
         <v-container>
           <v-row>
-            <v-text-field  v-model="description" label="Descrition" readonly outlined required></v-text-field>
+            <v-text-field  v-model="name" label="CUSTOMER" readonly outlined required></v-text-field>
+          </v-row>
+          <v-row>
+            <v-text-field  v-model="email" label="CUSTOMER EMAIL" readonly outlined required></v-text-field>
+          </v-row>
+          <v-row>
+            <v-text-field  v-model="account" label="ACCOUNT" readonly outlined required></v-text-field>
           </v-row>
           <v-row>
             <v-text-field  v-model="amount" label="Amount" v-mask="'$###.###,##'" readonly outlined required></v-text-field>
           </v-row>
           <v-row>
-            <v-text-field  type="date" readonly outlined required></v-text-field>
-          </v-row>
-          <v-row>
-            <v-img :src="url_image" width="400" height="200"></v-img>
+            <v-img :src="url_image" max-width="2000" max-height="1000"></v-img>
           </v-row>
           <v-row>
             <v-col>
@@ -34,32 +37,35 @@
 </template>
   
 <script>
-import axios from '../../service/auth';
+import axios from '../../service/auth'
+
 export default {
   data() {
     return {
       id: '',
       amount: 0,
-      description: '',
-      url_image:''
+      url_image:'',
+      email: '',
+      name: '',
+      account_id: ''
     }
   },
   mounted() {
     this.getData()
-    this.url_image = import.meta.env.VITE_API_URL + "/" + this.name_image
-    console.log(this.url_image)
   },
   methods: {
     getData() {
       this.id = this.$store.state.deposit.id
       this.amount = this.$store.state.deposit.amount
-      this.description = this.$store.state.deposit.description
-      this.name_image = this.$store.state.deposit.name_image
+      this.url_image = this.$store.state.deposit.url_image
+      this.account = this.$store.state.deposit.account
+      this.name = this.$store.state.deposit.name
+      this.email = this.$store.state.deposit.email
     },
     async submit(){
       try {
         await axios.put('/deposit/approve/' + this.id);
-        this.$router.push('/deposit');
+        this.$router.push('/check/control');
       }catch (error) {
         console.error(error)
       }
@@ -67,7 +73,7 @@ export default {
     async reject(){
       try {
         await axios.put('/deposit/reject/' + this.id);
-        this.$router.push('/deposit');
+        this.$router.push('/check/control');
       }catch (error) {
         console.error(error)
       }
