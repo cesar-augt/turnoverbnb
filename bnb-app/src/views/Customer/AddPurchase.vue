@@ -5,9 +5,11 @@
     </v-toolbar>
     <v-toolbar color="blue-lighten-3" dark flat>
       <v-container>
-        <v-row>
-          <v-col cols="3">
+        <v-row justify="center">
+          <v-col lg="2" >
             <v-text-field v-model="total" type="text" label="Current Balance"  v-mask="'$###.###,##'"  readonly outlined > </v-text-field>
+          </v-col>
+          <v-col lg="6" >
           </v-col>
         </v-row>
       </v-container>
@@ -15,14 +17,26 @@
     <v-card-text>
       <v-form @submit.prevent="onClickSubmit">
         <v-container>
-          <v-row>
-            <v-col>
+          <v-row justify="center">
+            <v-col lg="8" >
               <v-text-field v-model="amount" :error-messages="errors.amount" label="Amount" outlined v-mask="'$###.###,##'" suffix="USD"></v-text-field>
             </v-col>
           </v-row>
-          <v-text-field v-model="date" type="date" label="Date" :error-messages="errors.date"  outlined ></v-text-field>
-          <v-text-field v-model="description" label="Descrition" :error-messages="errors.description"  outlined ></v-text-field>
-          <v-btn color="blue-lighten-3" dark block type="submit" :loading="loading">ADD PURCHASE</v-btn>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <v-text-field v-model="date" type="date" label="Date" :error-messages="errors.date"  outlined ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <v-text-field v-model="description" label="Descrition" :error-messages="errors.description"  outlined ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <v-btn color="blue-lighten-3" dark block type="submit" :loading="loading">ADD PURCHASE</v-btn>
+            </v-col>
+          </v-row>
         </v-container>
       </v-form>
     </v-card-text>
