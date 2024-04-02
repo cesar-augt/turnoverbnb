@@ -6,26 +6,36 @@
     <v-card-text>
       <v-form  @submit.prevent="submit">
         <v-container>
-          <v-row>
-            <v-text-field  v-model="name" label="CUSTOMER" readonly outlined required></v-text-field>
+          <v-row justify="center">
+            <v-col lg="6" >
+              <v-text-field  v-model="name" label="CUSTOMER" readonly outlined required></v-text-field>
+            </v-col>
           </v-row>
-          <v-row>
-            <v-text-field  v-model="email" label="CUSTOMER EMAIL" readonly outlined required></v-text-field>
+          <v-row justify="center">
+            <v-col lg="6" >
+              <v-text-field  v-model="email" label="CUSTOMER EMAIL" readonly outlined required></v-text-field>
+            </v-col>
           </v-row>
-          <v-row>
-            <v-text-field  v-model="account" label="ACCOUNT" readonly outlined required></v-text-field>
+          <v-row justify="center">
+            <v-col lg="6" >
+              <v-text-field  v-model="account" label="ACCOUNT" readonly outlined required></v-text-field>
+            </v-col>
           </v-row>
-          <v-row>
-            <v-text-field  v-model="amount" label="Amount" v-mask="'$###.###,##'" readonly outlined required></v-text-field>
+          <v-row justify="center">
+            <v-col lg="6" >
+              <v-text-field  v-model="amount" label="Amount" v-mask="'$###.###,##'"  suffix="USD" readonly outlined required></v-text-field>
+            </v-col>
           </v-row>
-          <v-row>
-            <v-img :src="url_image" max-width="2000" max-height="1000"></v-img>
+          <v-row justify="center">
+            <v-col lg="10" >
+              <v-img :src="url_image" max-width="2000" max-height="1000"></v-img>
+            </v-col>
           </v-row>
-          <v-row>
-            <v-col>
+          <v-row justify="center">
+            <v-col lg="3" >
               <v-btn color="blue-lighten-3" dark block type="submit" >Aprove</v-btn>
             </v-col>
-            <v-col>
+            <v-col lg="3">
               <v-btn color="red" dark block type="button" @click="reject" >Reject</v-btn>
             </v-col>
           </v-row>
