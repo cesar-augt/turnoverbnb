@@ -1,28 +1,32 @@
 <template>
   <v-card class="elevation-12">
     <v-toolbar color="blue-lighten-3" dark flat>
-      <v-toolbar-title>Login</v-toolbar-title>
+      <v-toolbar-title>BNB Bank</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
       <v-form @submit.prevent="submit">
         <v-container>
-          <v-row>
-            <v-text-field v-model="email" :error-messages="errors && errors.email"  label="Email" outlined ></v-text-field>
+          <v-row justify="center">
+            <v-col lg="6" >
+              <v-text-field v-model="email" :error-messages="errors && errors.email"  label="Email" outlined ></v-text-field>
+            </v-col>
           </v-row>
-          <v-row>
-            <v-text-field v-model="password" label="Password" outlined :error-messages="errors && errors.password" type="password"></v-text-field>
+          <v-row justify="center">
+            <v-col lg="6" >
+              <v-text-field v-model="password" label="Password" outlined :error-messages="errors && errors.password" type="password"></v-text-field>
+            </v-col>
           </v-row>
-          <v-row>
-            <v-col>
+          <v-row justify="center">
+            <v-col lg="6" >
+              <v-link dark flat @click="createUser">Already have an account?</v-link>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col lg="6" >
               <v-btn color="blue-lighten-3"  :loading="loading" dark block type="submit">Login</v-btn>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <v-link class="elevation-12" dark flat @click="createUser"> Create a new user</v-link>
-              </v-col>
-            </v-row>
-      </v-container>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-form>
     </v-card-text>
   </v-card>
