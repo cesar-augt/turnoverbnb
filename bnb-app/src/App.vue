@@ -62,9 +62,12 @@ export default {
     data() {
       return {
         theme: useTheme(), 
-        drawer: true,
-        isDarkTheme: true
+        drawer: false,
+        isDarkTheme: false
       };
+    },
+    mounted() {
+      this.toggleTheme()
     },
     methods: {
       toggleTheme() {
