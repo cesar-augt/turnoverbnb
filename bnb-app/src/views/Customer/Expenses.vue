@@ -6,11 +6,11 @@
     <v-card-text>
       <v-form>
         <v-container>
-          <v-row>
-            <v-col cols="12" md="6">
-              <v-container>
-                <v-text-field v-model="selectedDate" type="month" outlined required @change="getData"></v-text-field>
-              </v-container>
+          <v-row justify="center">
+            <v-col lg="2" >
+              <v-text-field v-model="selectedDate" type="month" outlined required @change="getData"></v-text-field>
+            </v-col>
+            <v-col lg="6">
             </v-col>
           </v-row>
         </v-container>
@@ -18,7 +18,13 @@
     </v-card-text>
     <v-card-text>
       <v-form>
-        <Card v-for="(data, index) in expenses" :key="index" :card="data" />
+        <v-container>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <Card v-for="(data, index) in expenses" :key="index" :card="data" />
+            </v-col>
+          </v-row>
+        </v-container>
       </v-form>
     </v-card-text>
   </v-card>
