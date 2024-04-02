@@ -8,7 +8,13 @@
         <div v-if="error">
           <p>{{ error }}</p>
         </div>
-        <Card v-for="(data, index) in check" :key="index" :card="data" @click="openDetails(data)" />
+        <v-container>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <Card v-for="(data, index) in check" :key="index" :card="data" @click="openDetails(data)" />
+            </v-col>
+          </v-row>
+        </v-container>
       </v-form>
     </v-card-text>
   </v-card>
