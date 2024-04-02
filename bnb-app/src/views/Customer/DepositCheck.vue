@@ -5,29 +5,49 @@
     </v-toolbar>
     <v-toolbar color="blue-lighten-3" dark flat>
       <v-container>
-        <v-row>
-          <v-col cols="3">
-            <v-text-field v-model="total" type="text" label="Current Balance"  v-mask="'$###.###,##'"  readonly outlined > </v-text-field>
-          </v-col>
+          <v-row justify="center">
+            <v-col lg="2" >
+              <v-text-field v-model="total" type="text" label="Current Balance"  v-mask="'$###.###,##'"  readonly outlined > </v-text-field>
+            </v-col>
+            <v-col lg="6" >
+            </v-col>
         </v-row>
       </v-container>
     </v-toolbar>
     <v-card-text>
       <v-form @submit.prevent="submit">
-        <v-text-field v-model="amount" :error-messages="errors.amount" label="Amount" outlined required v-mask="'$###.###,##'" hint="The money will be deposited in your account once the check is accepted">
-        </v-text-field>
-        <v-text-field v-model="description"  :error-messages="errors.description" label="Descrition" outlined required>
-        </v-text-field>
-          <v-file-input 
-            :error-messages="errors.check_file" 
-            v-model="selectedFile.name"
-            accept="image/*"
-            label="Escolha uma imagem"
-            outlined
-            prepend-icon="mdi-camera"
-            @change="handleImageUpload"
-          ></v-file-input>
-        <v-btn color="blue-lighten-3"  :loading="loading" dark block type="submit">ADD DEPOSIT</v-btn>
+        <v-container>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <v-text-field v-model="amount" :error-messages="errors.amount" label="Amount" outlined required v-mask="'$###.###,##'" hint="The money will be deposited in your account once the check is accepted">
+              </v-text-field>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <v-text-field v-model="description"  :error-messages="errors.description" label="Descrition" outlined required>
+              </v-text-field>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <v-file-input 
+                :error-messages="errors.check_file" 
+                v-model="selectedFile.name"
+                accept="image/*"
+                label="Escolha uma imagem"
+                outlined
+                prepend-icon="mdi-camera"
+                @change="handleImageUpload"
+              ></v-file-input>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <v-btn color="blue-lighten-3"  :loading="loading" dark block type="submit">ADD DEPOSIT</v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-form>
     </v-card-text>
   </v-card>
