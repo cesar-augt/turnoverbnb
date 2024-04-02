@@ -12,56 +12,93 @@
             BALANCE
           </v-col>
         </v-row>
-          <v-row>
-            <v-col>
+          <v-row justify="center">
+            <v-col lg="4" >
               <v-text-field v-model="total" type="text" label="Current Balance"  v-mask="'$###.###,##'"  readonly outlined ></v-text-field>
             </v-col>
-            <v-col>
+            <v-col lg="4">
                 <v-text-field v-model="selectedDate" type="month" outlined required @change="getData"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
     </v-toolbar>
-    <v-card-text>
       <v-form>
         <v-container>
-          <v-row>
-              <v-col>
-                <v-text-field v-model="total_deposits" type="text" label="Incomes" readonly outlined  v-mask="'$###.###,##'"></v-text-field>
-              </v-col>
-              <v-col>
-                <v-card @click="openDeposit">
-                  <v-card-title>
-                    <v-icon>mdi-plus</v-icon>
-                  </v-card-title>
-                  <v-card-text>
-                    DEPOSIT A CHECK
-                  </v-card-text>
-                </v-card>
-              </v-col>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <v-card elevation="2"  class="elevate">
+                <v-container fluid>
+                  <v-row>
+                    <v-col cols="6" class="text-left">
+                      <div>
+                        <span class="font-weight-bold">Incomes</span>
+                      </div>
+                      <div>
+                        <span>${{ total_deposits }}</span>
+                      </div>
+                    </v-col>
+                    <v-col cols="6" class="text-center">
+                      <v-card elevation="0" @click="openDeposit">
+                            <v-card-title>
+                              <v-icon>mdi-plus</v-icon>
+                            </v-card-title>
+                            <v-card-text>
+                              DEPOSIT A CHECK
+                            </v-card-text>
+                          </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-col>
           </v-row>
-          <v-row>
-              <v-col>
-                <v-text-field v-model="total_purchases" type="text" label="Expenses" v-mask="'$###.###,##'" readonly outlined ></v-text-field>
-              </v-col>
-              <v-col>
-                <v-card @click="openPurchase">
-                  <v-card-title>
-                    <v-icon>mdi-plus</v-icon>
-                  </v-card-title>
-                  <v-card-text>
-                    PURCHASE
-                  </v-card-text>
-                </v-card>
-              </v-col>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <v-card elevation="2"  class="elevate">
+                <v-container fluid>
+                  <v-row>
+                    <v-col cols="6" class="text-left">
+                      <div>
+                        <span class="font-weight-bold">Expenses</span>
+                      </div>
+                      <div>
+                        <span>${{ total_purchases }}</span>
+                      </div>
+                    </v-col>
+                    <v-col cols="6" class="text-center">
+                      <v-card elevation="0" @click="openPurchase">
+                        <v-card-title>
+                          <v-icon>mdi-plus</v-icon>
+                        </v-card-title>
+                        <v-card-text>
+                          PURCHASE
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-col>
           </v-row>
         </v-container>
       </v-form>
-    </v-card-text>
     <v-card-text>
       <v-form>
-        <div class="text-left font-weight-bold">TRANSACTIONS</div>
-        <ListCard v-for="(data, index) in balance" :key="index" :card="data" />
+        <v-container>
+          <v-row justify="center">
+            <v-col lg="2" >
+              <div class="text-left font-weight-bold">TRANSACTIONS</div>
+            </v-col>
+            <v-col lg="6">
+
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col lg="8" >
+              <ListCard v-for="(data, index) in balance" :key="index" :card="data" />
+            </v-col>
+          </v-row>
+        </v-container>
       </v-form>
     </v-card-text>
   </v-card>
